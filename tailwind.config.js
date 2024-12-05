@@ -10,6 +10,9 @@ export default {
         'Rubik': "'Rubik', 'sans-serif'",
         'Questrial': "'Questrial', 'sans-serif'",
       },
+      colors:{
+        'primary' : '#749b3f', 
+      },
     },
   },
   plugins: [],
