@@ -5,13 +5,27 @@ const About = () => {
     <>
       <section className="container mx-auto px-6 ">
         <div className="flex flex-col lg:flex-row justify-center items-center gap-6">
-          <div className="w-full lg:w-[50%] flex justify-center ">
+          <div className="relative w-full lg:w-[50%] flex justify-center ">
+            <div>
             <img
               className="w-full object-cover"
               src="/images/about/about01.png"
               alt="about"
             />
+            </div>
+
+           <div className="absolute w-[28%] bg-white shadow-md flex flex-col justify-center items-center text-center rounded-xl top-[75%] left-[60%] p-2 space-y-2">
+           <img
+              className="bg-gray-100 w-full h-20 object-contain"
+              src="/images/about/about02.png"
+              alt="about"
+            />
+            <h4 className="font-Rubik font-medium">Mushroom</h4>
+            <p className="font-Questrial">$2.3/kg</p>
+            <button className="w-full font-Rubik font-medium border rounded-md py-1 hover:bg-[#FF6A1A] hover:text-white">Add to Curd</button>
+           </div>
           </div>
+
           <div className="w-full lg:w-[50%] space-y-4">
           <button className="text-primary bg-primary/10 font-medium py-1 px-2 rounded">About Us</button>
             <h3 className="font-Rubik font-medium text-3xl md:text-4xl lg:text-5xl">About Fresh Harvest</h3>
