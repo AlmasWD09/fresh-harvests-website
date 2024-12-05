@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="">
           <div className="flex items-center">
             <img src="/logo.png" alt="logo" />
-            <h2 className="text-xl font-bold">Fresh Harvests</h2>
+
           </div>
           <div className="lg:mt-20">
             <p className="font-Rubik font-medium">Download App:</p>

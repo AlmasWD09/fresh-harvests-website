@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import SectionHeading from "../../../components/shared/sectionHeading/SectionHeading";
 
 
 const FreshProducts = () => {
-  const [products, setProducts] = useState([]);
+  const [vegitables, setvegitables] = useState();
 
 
   // Data load
@@ -11,60 +12,37 @@ const FreshProducts = () => {
       try {
         const response = await fetch("https://api-fresh-harvest.code-commando.com/api/v1/products");
         const data = await response.json();
-        setProducts(data);
+        setvegitables(data);
       } catch (error) {
         console.error("Error loading data:", error);
       }
     };
     fetchData();
   }, []);
-console.log(products)
+
   return (
  <>
- <h1>product page</h1>
-{/* 
- <section className="container mx-auto px-4 py-8">
+<div className="flex justify-center">
+   <img className="object-contain" src="/images/leaf/leafLeft.png" alt="left image" />
+    <SectionHeading 
+    subheading={'Our Products'}
+    heading={'Our Fresh Products'}
+    paragraph={"We pride ourselves on offering a wide variety of fresh and flavorful fruits, vegetables, and salad ingredients."}
+    />
+    <img className="object-contain mt-20" src="/images/leaf/leafLeft.png" alt="left image" />
+   </div>
 
-<div className="flex justify-between mb-2">
-  <div>
-    <h2 className="uppercase text-primary ">Summer</h2>
-    <p className="font-semibold">Big Deal</p>
-  </div>
-  <div className="flex gap-2">
-    <span className="border border-primary rounded-full flex justify-center items-center h-8 w-8"><BsArrowLeft /></span>
-    <span className="border border-primary rounded-full flex justify-center items-center h-8 w-8"><BsArrowRight /></span>
-  </div>
-</div>
+ <section className="container mx-auto px-6 ">
 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-  {products.map((product, idx) => (
+  {vegitables.map((vegitable, idx) => (
     <div
       key={idx}
       className="bg-white rounded-lg shadow-md p-2 hover:shadow-2xl transition duration-300"
     >
       <div className="relative h-[220px] text-center">
-        <Image
-        onClick={() => handleAddToCart(product.id)} 
-          src={product.image}
-          alt={product.name}
-          width={300}
-          height={300}
-          className="max-h-[200px] w-full bg-primaryGray/50 object-contain bg-center rounded-md "
-        />
-        <span className="absolute h-[66px] w-12 top-0 right-2 px-3 flex justify-center items-center bg-primary text-white text-sm rounded-b-full">
-          Up to 40%
-        </span>
+      
       </div>
       <div className="mt-4">
-        <div className="flex items-center space-x-1 text-yellow-500">
-          {[...Array(Math.round(product.rating))].map((_, i) => (
-            <span key={i}>&#9733;</span>
-          ))}
-          <span className="text-black">({product.rating})</span>
-        </div>
-        <div className="flex justify-between">
-          <h5 className="font-semibold ">{product.name}</h5>
-          <h4 className="text-lg font-semibold">BDT {product.price}</h4>
-        </div>
       </div>
       <div className="mt-4">
         <button className="w-full py-2 border border-primary hover:text-white font-semibold rounded hover:bg-primary transition duration-300">
@@ -79,7 +57,7 @@ console.log(products)
     See More
   </button>
 </div>
-</section> */}
+</section>
  </>
   )
 }

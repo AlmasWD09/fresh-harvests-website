@@ -42,7 +42,7 @@ const Testimonial = () => {
     />
     <img className="object-contain mt-20" src="/images/leaf/leafLeft.png" alt="left image" />
    </div>
-   <div className="testimonial-container max-w-[1440px] mx-auto mt-24">
+   <div className="container mx-auto px-6 mt-24">
         <Swiper
           loop={true} // Enables looping
           pagination={{ clickable: true }} // Adds clickable pagination
