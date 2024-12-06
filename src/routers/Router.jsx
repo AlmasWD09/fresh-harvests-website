@@ -12,6 +12,7 @@ import Login from "../pages/login/Login";
 import FreshProductDetails from "../pages/home/freshProducts/FreshProductDetails";
 import About from "../pages/home/about/About";
 import Blogs from "../pages/home/blogs/Blogs";
+import Shop from "../pages/shop/Shop";
 
 
 const router = createBrowserRouter([
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/shop",
+        element: <Shop/>,
       },
       {
         path: "/about-us",
