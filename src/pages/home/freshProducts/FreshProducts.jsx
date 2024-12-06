@@ -1,65 +1,139 @@
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import LoadingSpinner from "../../../components/shared/LoadingSpinner";
 import SectionHeading from "../../../components/shared/sectionHeading/SectionHeading";
 
 
 const FreshProducts = () => {
-  const [vegitables, setvegitables] = useState();
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-
-  // Data load
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchProductsAndCategories = async () => {
       try {
-        const response = await fetch("https://api-fresh-harvest.code-commando.com/api/v1/products");
-        const data = await response.json();
-        setvegitables(data);
-      } catch (error) {
-        console.error("Error loading data:", error);
+        // Fetch products
+        const productResponse = await fetch(
+          "https://test-2-tan-chi.vercel.app/api/v1/products"
+        );
+        const productData = await productResponse.json();
+
+        if (productData.success) {
+          setProducts(productData.data);
+          setFilteredProducts(productData.data);
+        } else {
+          throw new Error("Failed to fetch products");
+        }
+
+        // Fetch categories
+        const categoryResponse = await fetch(
+          "https://test-2-tan-chi.vercel.app/api/v1/category"
+        );
+        const categoryData = await categoryResponse.json();
+
+        if (categoryData.success) {
+          setCategories(categoryData.data);
+        } else {
+          throw new Error("Failed to fetch categories");
+        }
+      } catch (err) {
+        setError("Failed to load products or categories");
+      } finally {
+        setLoading(false);
       }
     };
-    fetchData();
+
+    fetchProductsAndCategories();
   }, []);
 
-  return (
- <>
-<div className="flex justify-center">
-   <img className="object-contain" src="/images/leaf/leafLeft.png" alt="left image" />
-    <SectionHeading 
-    subheading={'Our Products'}
-    heading={'Our Fresh Products'}
-    paragraph={"We pride ourselves on offering a wide variety of fresh and flavorful fruits, vegetables, and salad ingredients."}
-    />
-    <img className="object-contain mt-20" src="/images/leaf/leafLeft.png" alt="left image" />
-   </div>
+  const handleCategoryFilter = (category) => {
+    setSelectedCategory(category);
 
- <section className="container mx-auto px-6 ">
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-  {vegitables.map((vegitable, idx) => (
-    <div
-      key={idx}
-      className="bg-white rounded-lg shadow-md p-2 hover:shadow-2xl transition duration-300"
-    >
-      <div className="relative h-[220px] text-center">
-      
+    if (category === "All") {
+      setFilteredProducts(products);
+    } else {
+      setFilteredProducts(
+        products.filter((product) => product.categoryId === category)
+      );
+    }
+  };
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
+  console.log(products)
+  return (
+    <div className="max-w-[1200px] mx-auto p-4 mt-10">
+      {/* Render category filter buttons */}
+      <div className="mb-6 text-center">
+        <SectionHeading 
+        subheading={'Our Products'}
+        heading={'Our Fresh Products'}
+        paragraph={"We pride ourselves on providing a wide variety of fresh and flavourful, fruits, vegetables and ingredients"}
+        />
+        {["All", ...categories.map((cat) => cat.id)].map(
+          (categoryId, index) => {
+            const categoryName =
+              categoryId === "All"
+                ? "All"
+                : categories.find((cat) => cat.id === categoryId)?.categoryName;
+            return (
+              <button
+                key={index}
+                onClick={() => handleCategoryFilter(categoryId)}
+                className={`px-5 py-3 font-semibold rounded-lg m-2 border ${
+                  selectedCategory === categoryId
+                    ? "bg-[#749B3F] text-white"
+                    : "text-[#A6A6A6]"
+                }`}
+              >
+                {categoryName}
+              </button>
+            );
+          }
+        )}
       </div>
-      <div className="mt-4">
+
+      {/* Render products */}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
+          filteredProducts.slice(0, 8).map((product) => (
+            <Link to={`/products/${product.id}`} key={product.id}>
+              <div className=" border p-2 rounded-lg shadow-md flex flex-col items-center">
+                <img
+                  src={product.images[0] || "/404.png"}
+                  alt={product.productName}
+                  className="w-[258px] h-[208px] object-contain rounded-lg"
+                />
+                <h3 className="text-lg font-bold mt-4 text-center">
+                  {product.productName}
+                </h3>
+                <p className="text-center font-bold">${product.price}</p>
+                <button className="w-full border-[#D9D9D9] hover:border-white text-[#212337] border-2 p-2 mt-4 rounded-lg bg-white hover:text-white hover:bg-[#FF6A1A] transition duration-300">
+                  Add to Cart
+                </button>
+              </div>
+            </Link>
+          ))
+        ) : (
+          <p>No products available</p>
+        )}
       </div>
-      <div className="mt-4">
-        <button className="w-full py-2 border border-primary hover:text-white font-semibold rounded hover:bg-primary transition duration-300">
-          Add to Cart
-        </button>
+      <div className="flex justify-center">
+          <button className="border border-[#FF6A1A] text-[#FF6A1A] font-bold bg-transparent px-5 py-3 text-center max-w-[203px] hover:bg-[#FF6A1A] my-10 rounded-lg hover:text-white">
+            See all Products
+          </button>
       </div>
     </div>
-  ))}
-</div>
-<div className="text-center mt-8">
-  <button className="px-6 py-2 bg-primary/90 text-white rounded hover:bg-primary transition duration-300">
-    See More
-  </button>
-</div>
-</section>
- </>
-  )
-}
+  );
+};
 
-export default FreshProducts
+export default FreshProducts;

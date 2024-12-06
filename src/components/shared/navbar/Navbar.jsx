@@ -4,11 +4,10 @@ import { VscMenu } from "react-icons/vsc";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import Button from "../Button";
 import { LuShoppingCart } from "react-icons/lu";
-import Modal from "../modal/Modal";
 
 
 const Navbar = () => {
-  const [modal, setModal] = useState(false);
+
   const [isOpen, setIsOpen] = useState(true);
   const [navbar, setNavbar] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -35,15 +34,15 @@ const Navbar = () => {
   const photoURL = "/images/about/photo02.png"
   return (
     <>
-      <header className={navbar ? 'bg-primary/60 text-white sticky top-0 left-0 z-[99999] shadow-md w-full   py-4 lg:py-6  overflow-visible' : 'sticky top-0 left-0 z-[99999] shadow-md w-full py-4 lg:py-6  overflow-visible '}>
+      <header className={navbar ? 'bg-primary/60 text-white sticky top-0 left-0 z-[99999] shadow-md w-full  py-5  overflow-visible' : 'sticky top-0 left-0 z-[99999] shadow-md w-full py-5 overflow-visible '}>
         <div className="container mx-auto px-6 flex items-center">
           <nav className="relative container flex justify-between items-center">
             {/* navbar website name and logo */}
-            <div className="w-[20%]">
+            <div className="w-[50%] lg:w-[20%]">
               <div
                 onClick={handleNavigaet}
                 className="flex items-center cursor-pointer">
-                <img className="" src="/logo.png" alt="navbar logo" />
+                <img className="w-full" src="/logo.png" alt="navbar logo" />
               </div>
             </div>
 
@@ -66,7 +65,7 @@ const Navbar = () => {
             {/* mobile menu */}
             <div
               className={`${isOpen ? "-right-full" : "right-0"
-                }  w-2/3 h-screen p-4 fixed  top-[70px] md:top-[65px] z-[999999] bg-primaryGray  shadow-md flex flex-col space-y-4 my-transition`}
+                }  w-2/3 h-screen p-4 fixed  top-[70px] md:top-[100px] z-[999999] bg-gray-100  shadow-md flex flex-col space-y-4 my-transition`}
             >
               <div className="flex flex-col lg:hidden space-y-4">
                 <NavLink to='/' >
@@ -86,7 +85,7 @@ const Navbar = () => {
 
                 {/* navbar Sign Up and login button */}
                 <div className=" bg-secondery/50 rounded-md py-3">
-                  <div className="flex flex-col items-center gap-4">
+                  <div className="flex flex-col gap-4">
                     <div>
                       <Link to='/favorites' className="text-xl  font-semibold font-lato ">Favorites</Link>
                     </div>
@@ -142,6 +141,11 @@ const Navbar = () => {
                 <NavLink to='/blogs' >
                   <Button text={"Blogs"} />
                 </NavLink>
+                {
+                  user && <NavLink to='/dashboard' >
+                    <Button text={"Dashboard"} />
+                  </NavLink>
+                }
               </div>
             </div>
             {/* navbar signup and login button */}
@@ -149,10 +153,10 @@ const Navbar = () => {
               <div className="flex items-center gap-4">
                 <div className="flex items-center">
                   <img className="w-6" src="/love.png" alt="love" />
-                  <Link to='/favorites' className="text-xl font-semibold font-lato text-primary pr-4 ">Favorites</Link>
+                  <Link to='/favorites' className="text-xl font-semibold font-lato  pr-4 ">Favorites</Link>
                   <div className="relative">
-                  <span><LuShoppingCart className="text-primary text-2xl"/></span>
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#FF6A1A] text-white rounded-full text-xs flex justify-center items-center">3</div>
+                    <span><LuShoppingCart className="text-primary text-2xl" /></span>
+                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#FF6A1A] text-white rounded-full text-xs flex justify-center items-center">3</div>
                   </div>
                 </div>
 
@@ -175,9 +179,10 @@ const Navbar = () => {
                     </div>
                   </div>
                     :
+                    <Link to={'/register'}>
                       <button
-                      onClick={() => setModal(true)}
-                      className="w-full px-2 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-primary rounded-md hover:bg-secondery focus:outline-none focus:bg-secondery">Sign Up</button>
+                        className="w-full px-5 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-primary rounded-md hover:bg-secondery focus:outline-none focus:bg-secondery">Register</button>
+                    </Link>
                 }
 
               </div>
@@ -185,7 +190,7 @@ const Navbar = () => {
           </nav>
         </div>
       </header>
-        {modal && <Modal closeModal={() => setModal(false)} />}
+
     </>
   )
 }
