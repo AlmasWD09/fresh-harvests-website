@@ -106,7 +106,7 @@ const FreshProducts = () => {
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
           filteredProducts.slice(0, 8).map((product) => (
-            <Link to={`/products/${product.id}`} key={product.id}>
+            <Link to={`/product-details/${product.id}`} key={product.id}>
               <div className=" border p-2 rounded-lg shadow-md flex flex-col items-center">
                 <img
                   src={product.images[0] || "/404.png"}

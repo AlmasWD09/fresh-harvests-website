@@ -3,7 +3,7 @@
 const About = () => {
   return (
     <>
-      <section className="container mx-auto px-6 ">
+      <section className="container mx-auto px-6 mb-20">
         <div className="flex flex-col lg:flex-row justify-center items-center gap-10 lg:gap-6">
           <div className="relative w-full lg:w-[50%] flex justify-center ">
             <div>
