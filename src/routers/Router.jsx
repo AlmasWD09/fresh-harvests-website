@@ -9,6 +9,9 @@ import AdminProfile from "../pages/dashboard/common/profile/AdminProfile";
 import AddProduct from "../pages/dashboard/admin/addProduct/AddProduct";
 import Register from "../pages/register/Register";
 import Login from "../pages/login/Login";
+import FreshProductDetails from "../pages/home/freshProducts/FreshProductDetails";
+import About from "../pages/home/about/About";
+import Blogs from "../pages/home/blogs/Blogs";
 
 
 const router = createBrowserRouter([
@@ -20,6 +23,22 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/about-us",
+        element: <About />,
+      },
+      {
+        path: "/blogs",
+        element: <Blogs />,
+      },
+      {
+        path: "/product-details/:id",
+        element: <FreshProductDetails />,
+        loader: ({ params }) =>
+          fetch(
+            `https://test-2-tan-chi.vercel.app/api/v1/products/${params.id}`
+          ),
       },
     ],
   },
