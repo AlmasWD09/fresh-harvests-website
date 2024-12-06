@@ -9,7 +9,7 @@ const Testimonial = () => {
     {
       name: "Alice Johnson",
       image:
-        "https://i.ibb.co/7tFcSVB/IMG-9819-2-2000-7135e00311464ff79b546ab1e1174b27.jpg",
+        "https://i.ibb.co.com/TcdKqK4/Rectangle-3.png",
       reviewText:
         "The seasonal fruit bundle was amazing! Fresh, juicy, and well-packed. The variety of fruits exceeded my expectations, and I was particularly impressed by how fresh everything was upon arrival. I’ve tried many other services before, but this one truly stands out for its quality and attention to detail. Highly recommend it to anyone looking for premium produce delivered right to their doorstep. Will definitely order again!",
       designation: "Food Blogger",
@@ -32,7 +32,7 @@ const Testimonial = () => {
   ];
   return (
    <>
-   <section>
+   <section className="container mx-auto px-6 py-10">
    <div className="flex justify-center">
    <img className="object-contain" src="/images/leaf/leafLeft.png" alt="left image" />
     <SectionHeading 
@@ -42,10 +42,10 @@ const Testimonial = () => {
     />
     <img className="object-contain mt-20" src="/images/leaf/leafLeft.png" alt="left image" />
    </div>
-   <div className="container mx-auto px-6 mt-24">
+   <div className="container mx-auto px-6">
         <Swiper
-          loop={true} // Enables looping
-          pagination={{ clickable: true }} // Adds clickable pagination
+          loop={true}
+          pagination={{ clickable: true }}
           modules={[Pagination]}
           className="mySwiper"
         >

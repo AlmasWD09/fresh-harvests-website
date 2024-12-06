@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-6">
         <div className="">
           <div className="flex items-center">
-            <img src="/logo.png" alt="logo" />
+            <img className="w-[70%]" src="/logo.png" alt="logo" />
 
           </div>
           <div className="lg:mt-20">
