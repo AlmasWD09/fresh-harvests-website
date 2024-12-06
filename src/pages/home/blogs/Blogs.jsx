@@ -21,7 +21,7 @@ const Blogs = () => {
   ]
   return (
     <>
-      <section className="container mx-auto px-6 bg-white dark:bg-gray-900">
+      <section className="container mx-auto px-6 bg-white py-10">
         <div className="flex justify-center items-center">
           <div>
             {/* section heading component */}

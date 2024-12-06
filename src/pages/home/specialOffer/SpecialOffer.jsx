@@ -29,38 +29,42 @@ const SpecialOffer = () => {
 
   return (
     <div
-    className="h-[640px] mt-24 bg-cover bg-center w-[1440px] mx-auto"
-    style={{ backgroundImage: "url('/images/specialOffer/specialfood01.jpg')" }}
+    className="mt-10 lg:mt-24"
+    style={{ backgroundImage: "url('/images/specialOffer/specialfood01.jpg')",
+      backgroundPosition: "center",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+    }}
   >
-     <div className="container mx-auto px-6 py-[120px]">
-     <button className="text-primary bg-primary/10 font-medium py-1 px-2 rounded">Special Offer</button>
-        <h2 className="font-medium text-[#212337] text-[80px]">
+     <div className="container mx-auto px-6 py-10 lg:py-[120px]">
+     <button className="text-primary bg-primary/10 font-Rubik font-medium py-1 px-2 rounded">Special Offer</button>
+        <h2 className="font-medium text-[#212337] text-[60px] lg:text-[80px] leading-none">
           Seasonal Fruit Bundle
         </h2>
-        <h2 className="font-medium text-[48px]">
+        <h2 className="font-medium text-[30px] lg:text-[48px]">
           Discount up to <span className="text-[#FF6A1A]">80% OFF</span>
         </h2>
         <div className="flex gap-5 mt-5">
-          <div className="w-[98px] h-[122px] bg-white text-center flex flex-col justify-center items-center rounded-lg shadow-md">
-            <span className="text-[40px] font-bold">
+          <div className=" w-[70px] lg:w-[98px] h-[100px] lg:h-[122px] bg-white text-center flex flex-col justify-center items-center rounded-lg shadow-md">
+            <span className="text-[25px] lg:text-[40px] font-bold">
               {timeLeft.days || "0"}
             </span>
             <span className="text-[18px]">Days</span>
           </div>
-          <div className="w-[98px] h-[122px] bg-white text-center flex flex-col justify-center items-center rounded-lg shadow-md">
-            <span className="text-[40px] font-bold">
+          <div className="w-[70px] lg:w-[98px] h-[100px] lg:h-[122px] bg-white text-center flex flex-col justify-center items-center rounded-lg shadow-md">
+            <span className="text-[25px] lg:text-[40px] font-bold">
               {timeLeft.hours || "0"}
             </span>
             <span className="text-[18px]">Hours</span>
           </div>
-          <div className="w-[98px] h-[122px] bg-white text-center flex flex-col justify-center items-center rounded-lg shadow-md">
-            <span className="text-[40px] font-bold">
+          <div className="w-[70px] lg:w-[98px] h-[100px] lg:h-[122px] bg-white text-center flex flex-col justify-center items-center rounded-lg shadow-md">
+            <span className="text-[25px] lg:text-[40px] font-bold">
               {timeLeft.minutes || "0"}
             </span>
             <span className="text-[18px]">Minutes</span>
           </div>
-          <div className="w-[98px] h-[122px] bg-white text-center flex flex-col justify-center items-center rounded-lg shadow-md">
-            <span className="text-[40px] font-bold">
+          <div className="w-[70px] lg:w-[98px] h-[100px] lg:h-[122px] bg-white text-center flex flex-col justify-center items-center rounded-lg shadow-md">
+            <span className="text-[25px] lg:text-[40px] font-bold">
               {timeLeft.seconds || "0"}
             </span>
             <span className="text-[18px]">Seconds</span>
