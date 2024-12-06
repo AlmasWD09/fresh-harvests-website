@@ -16,13 +16,11 @@ const Register = () => {
             name: data.name,
             email: data.email,
             password: data.password,
-            role: 'user'
         }
-        reset();
-
-        const { responce } = await axios.post("https://api-fresh-harvest.code-commando.com/api/v1/auth/register", userInfo)
+        const { responce } = await axios.post("https://api-fresh-harvest.code-commando.com/api/v1/users/register", userInfo)
         console.log(responce);
 
+        reset();
     }
     const handleGoBack = () => {
         navigate(-1)

@@ -68,8 +68,6 @@ const FreshProducts = () => {
   if (error) {
     return <p>Error: {error}</p>;
   }
-
-  console.log(products)
   return (
     <div className="max-w-[1200px] mx-auto p-4 mt-10">
       {/* Render category filter buttons */}

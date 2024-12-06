@@ -13,10 +13,10 @@ const Login = () => {
             email: data.email,
             password: data.password,
         }
-        console.log(userInfo)
-        reset();
+        
         const { responce } = await axios.post("https://api-fresh-harvest.code-commando.com/api/v1/auth/login", userInfo)
         console.log(responce);
+        reset();
     }
     const handleGoBack = () => {
         navigate(-1)
